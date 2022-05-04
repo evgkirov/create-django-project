@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  web:
+    build: .
+    env_file:
+      - .env
+    command: runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_USER={{ project_name }}
+      - POSTGRES_DB={{ project_name }}
+      - POSTGRES_PASSWORD={{ project_name }}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres: {}
