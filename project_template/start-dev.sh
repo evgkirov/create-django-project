@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-chmod -x contrib/git-hooks/*
+chmod +x contrib/git-hooks/*
 git config core.hooksPath contrib/git-hooks
 
 touch .env

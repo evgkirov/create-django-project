@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Email
 
 EMAIL_CONFIG = env.email(
-    'EMAIL_URL',
-    default='consolemail://'
+    "EMAIL_URL",
+    default="consolemail://"
 )
 vars().update(EMAIL_CONFIG)
