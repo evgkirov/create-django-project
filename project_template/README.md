@@ -1,7 +1,7 @@
-# {{ project_name }} 2
+# {{ project_name }}
 
 ## Development
 
-Короче:
+Run:
 
-    ./setup-dev-environment.sh
+    ./setup-dev.sh

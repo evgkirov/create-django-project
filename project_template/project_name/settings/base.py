@@ -8,15 +8,13 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
+
+Uses django-environ https://django-environ.readthedocs.io/en/latest/
 """
 
 from pathlib import Path
 
-from .utils import env
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+from .utils import env, ROOT_DIR, BASE_DIR
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY", default="")
 
 if not SECRET_KEY:
-    SECRET_KEY = "please-set-env-variable"
+    SECRET_KEY = "hellofriend"
     print("Don't forget to set SECRET_KEY when running in non-development environment.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "{{ project_name }}.core",
+    "{{ project_name }}.utils",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,9 @@ ROOT_URLCONF = "{{ project_name }}.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -129,3 +131,12 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Email
+
+EMAIL_CONFIG = env.email(
+    'EMAIL_URL',
+    default='consolemail://'
+)
+vars().update(EMAIL_CONFIG)

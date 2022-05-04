@@ -6,6 +6,7 @@ Yet another opinionated Django project template that no one will ever use except
 
 * Linux or macOS (not tested with Windows)
 * Docker & Docker Compose
+* git
 
 ## Usage
 

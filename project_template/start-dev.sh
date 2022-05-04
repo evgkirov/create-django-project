@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-cp contrib/git-hooks/pre-commit .git/hooks/pre-commit
-chmod +x .git/hooks/pre-commit
+chmod -x contrib/git-hooks/*
+git config core.hooksPath contrib/git-hooks
 
 touch .env
-docker-compose up &
+docker compose up &
 ./wait-for-it.sh 127.0.0.1:8000 -t 600
+docker compose run --rm web install
 open "http://127.0.0.1:8000/"
