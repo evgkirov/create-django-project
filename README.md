@@ -11,7 +11,7 @@ Yet another opinionated Django project template that no one will ever use except
 
 Replace **myproject** with your actual project name.
 
-    docker run -e PROJECT_NAME=myproject --mount type=bind,src=$PWD,dst=/projects evgkirov/create-django-project:latest
+    docker run -e PROJECT_NAME=myproject --mount type=bind,src=$PWD,dst=/projects evgkirov/create-django-project:main
 
 Then run the newly created project:
 
